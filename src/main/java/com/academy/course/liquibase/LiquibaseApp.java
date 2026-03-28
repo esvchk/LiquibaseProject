@@ -16,19 +16,18 @@ public class LiquibaseApp {
 
         EntityManager em = HibernateUtil.getEntityManager();
 
-        Teacher teacher = new Teacher("Sam",null);
-
-        Task task = new Task("Math","good","@#$",null,null);
-        Set<Task> tasks = new HashSet<>();
-        tasks.add(task);
-
-        Course course = new Course("Math",null,teacher,tasks);
-        Set<Course> courses = new HashSet<>();
-        courses.add(course);
-
-        Student student = new Student("Bob",tasks,courses);
         Set<Student> students = new HashSet<>();
+        Set<Course> courses = new HashSet<>();
+        Set<Task> tasks = new HashSet<>();
+
+        Teacher teacher = new Teacher("Sam",null);
+        Student student = new Student("Bob",tasks,courses);
+        Course course = new Course("Math",students,teacher,tasks);
+        Task task = new Task("Math","good","@#$",students,course);
+
+        courses.add(course);
         students.add(student);
+        tasks.add(task);
 
 
         em.getTransaction().begin();
