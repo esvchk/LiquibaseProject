@@ -34,8 +34,17 @@ public class Teacher extends DataEntity implements Serializable {
         return Objects.equals(getId(),teacher.getId());
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "name='" + name + '\'' +
+                ", tasks=" + tasks +
+                '}';
     }
 }

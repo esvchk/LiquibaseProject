@@ -7,6 +7,7 @@ import com.academy.course.liquibase.model.Teacher;
 import com.academy.course.liquibase.utils.HibernateUtil;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +28,9 @@ public class LiquibaseApp {
         em.getTransaction().begin();
         em.persist(course);
         em.getTransaction().commit();
+
+        Query query = em.createQuery("From Student std where std.studentName like :name order by std.studentName desc");
+        query.setParameter("name","Bill%").getResultList().forEach(System.out::println);
 
     }
 }
