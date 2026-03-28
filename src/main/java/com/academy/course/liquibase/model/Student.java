@@ -22,8 +22,8 @@ public class Student extends DataEntity implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(name = "student_tasks",
-    joinColumns = {@JoinColumn(name = "task_id")},
-    inverseJoinColumns = {@JoinColumn(name = "student_id")})
+    joinColumns = {@JoinColumn(name = "student_id")},
+    inverseJoinColumns = {@JoinColumn(name = "task_id")})
     private Set<Task> tasks = new HashSet<>();
 
 
