@@ -23,9 +23,6 @@ public class Teacher extends DataEntity implements Serializable {
     @OneToOne(mappedBy = "teacher")
     private Course course;
 
-    @OneToMany(mappedBy = "teacher")
-    private Set<Task> tasks = new HashSet<>();
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -44,7 +41,6 @@ public class Teacher extends DataEntity implements Serializable {
     public String toString() {
         return "Teacher{" +
                 "name='" + name + '\'' +
-                ", tasks=" + tasks +
                 '}';
     }
 }

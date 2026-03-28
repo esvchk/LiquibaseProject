@@ -32,6 +32,9 @@ public class Course extends DataEntity implements Serializable {
     @JoinColumn(name = "teacher_id",referencedColumnName = "id")
     private Teacher teacher;
 
+    @OneToMany(mappedBy = "course")
+    private Set<Task> tasks = new HashSet<>();
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

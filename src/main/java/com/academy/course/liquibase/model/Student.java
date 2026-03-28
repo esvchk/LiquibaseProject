@@ -17,11 +17,12 @@ import java.util.Set;
 @Entity
 @Table
 public class Student extends DataEntity implements Serializable {
+
     @Column
     private String studentName;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(name = "student_tasks",
+    @JoinTable(name = "student_answers",
     joinColumns = {@JoinColumn(name = "student_id")},
     inverseJoinColumns = {@JoinColumn(name = "task_id")})
     private Set<Task> tasks = new HashSet<>();
