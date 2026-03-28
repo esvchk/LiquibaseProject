@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +20,7 @@ public class Teacher extends DataEntity implements Serializable {
 
     @OneToOne(mappedBy = "teacher")
     private Course course;
+
 
     @Override
     public boolean equals(Object o) {

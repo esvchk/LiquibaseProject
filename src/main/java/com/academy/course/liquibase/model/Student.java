@@ -21,16 +21,8 @@ public class Student extends DataEntity implements Serializable {
     @Column
     private String studentName;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(name = "student_answers",
-    joinColumns = {@JoinColumn(name = "student_id")},
-    inverseJoinColumns = {@JoinColumn(name = "task_id")})
-    private Set<Task> tasks = new HashSet<>();
-
-
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
-
 
     @Override
     public boolean equals(Object o) {
@@ -49,7 +41,7 @@ public class Student extends DataEntity implements Serializable {
     public String toString() {
         return "Student{" +
                 "studentName='" + studentName + '\'' +
-                ", tasks=" + tasks +
+                ", tasks=" +
                 ", courses=" + courses +
                 '}';
     }
