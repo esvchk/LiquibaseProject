@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -28,4 +29,18 @@ public class Student extends DataEntity implements Serializable {
 
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Student student = (Student) o;
+        return Objects.equals(getId(),student.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }
