@@ -1,4 +1,7 @@
 package com.academy.course.liquibase.dao;
 
-public class CourseDAOImpl {
+import com.academy.course.liquibase.model.Course;
+
+public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO{
+
 }

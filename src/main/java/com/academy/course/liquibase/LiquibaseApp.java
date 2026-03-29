@@ -1,38 +1,27 @@
 package com.academy.course.liquibase;
 
+import com.academy.course.liquibase.dao.CourseDAO;
+import com.academy.course.liquibase.dao.CourseDAOImpl;
 import com.academy.course.liquibase.model.*;
 import com.academy.course.liquibase.utils.HibernateUtil;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import java.security.CodeSource;
 import java.util.HashSet;
 import java.util.Set;
 
 public class LiquibaseApp {
     public static void main(String[] args) {
-
-        EntityManager em = HibernateUtil.getEntityManager();
-
-        Set<Student> students = new HashSet<>();
-        Set<Course> courses = new HashSet<>();
-        Set<Task> tasks = new HashSet<>();
-
-        Teacher teacher = new Teacher("Sam",null);
-        Student student = new Student("Bob",courses);
-        Course course = new Course("Math",students,teacher,tasks);
-        Task task = new Task("Math","good","@#$",null,course);
-        Mark mark = new Mark(2,"@#$",null);
-        Answer answer = new Answer("@#$",task,mark);
-        courses.add(course);
-        students.add(student);
-        tasks.add(task);
-
-
-        em.getTransaction().begin();
-        em.persist(course);
-        em.getTransaction().commit();
-
-//        Query query = em.createQuery("From Student std where std.studentName like :name order by std.studentName desc");
-//        query.setParameter("name","Bill%").getResultList().forEach(System.out::println);
+        Teacher teacher = Teacher.builder().name("TeacherName!").build();
+        Course course = Course.builder().courseName("courseName!").build();
+        Student student = Student.builder().studentName("studentName!").build();
+        Set<Student> set = new HashSet<>();
+        set.add(student);
+        course.setTeacher(teacher);
+        course.setStudents(set);
+        CourseDAO courseDAO = new CourseDAOImpl();
+        courseDAO.save(course);
 
     }
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,13 +17,24 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table
+@SuperBuilder
 public class Student extends DataEntity implements Serializable {
 
     @Column
     private String studentName;
 
+
+
+
+
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
+
+
+
+
+
+
 
     @Override
     public boolean equals(Object o) {

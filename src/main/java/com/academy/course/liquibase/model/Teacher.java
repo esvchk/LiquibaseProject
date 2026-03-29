@@ -1,8 +1,10 @@
 package com.academy.course.liquibase.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +15,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table
+@SuperBuilder
 public class Teacher extends DataEntity implements Serializable {
 
     @Column

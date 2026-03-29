@@ -20,12 +20,6 @@ public class Task extends DataEntity implements Serializable {
     @Column
     private String name;
 
-    @Column
-    private String mark;
-
-    @Column
-    private String feedback;
-
     @OneToOne(mappedBy = "task")
     private Answer answer;
 
@@ -50,8 +44,8 @@ public class Task extends DataEntity implements Serializable {
     public String toString() {
         return "Task{" +
                 "name='" + name + '\'' +
-                ", mark='" + mark + '\'' +
-                ", feedback='" + feedback + '\'' +
+                ", answer=" + answer +
+                ", course=" + course +
                 '}';
     }
 }

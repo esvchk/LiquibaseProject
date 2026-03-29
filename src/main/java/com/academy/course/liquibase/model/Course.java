@@ -3,6 +3,7 @@ package com.academy.course.liquibase.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Data
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -27,12 +29,24 @@ public class Course extends DataEntity implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "student_id")})
     private Set<Student> students = new HashSet<>();
 
+
+
+
+
+
+
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id",referencedColumnName = "id")
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+
+
 
     @OneToMany(mappedBy = "course")
     private Set<Task> tasks = new HashSet<>();
+
+
 
     @Override
     public boolean equals(Object o) {

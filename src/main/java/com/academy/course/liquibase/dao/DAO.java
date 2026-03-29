@@ -1,4 +1,13 @@
 package com.academy.course.liquibase.dao;
 
-public interface DAO {
+import java.io.Serializable;
+
+public interface DAO<T> {
+    T save(T t);
+
+    T get(Serializable id);
+
+    void update(T t);
+
+    int delete(Serializable id);
 }

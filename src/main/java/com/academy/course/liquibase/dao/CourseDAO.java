@@ -1,4 +1,6 @@
 package com.academy.course.liquibase.dao;
 
-public interface CourseDAO {
+import com.academy.course.liquibase.model.Course;
+
+public interface CourseDAO extends DAO<Course>{
 }
