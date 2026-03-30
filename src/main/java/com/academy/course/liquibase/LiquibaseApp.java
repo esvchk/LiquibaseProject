@@ -16,17 +16,25 @@ public class LiquibaseApp {
         Set<Course> courses = new HashSet<>();
         Set<Task> tasks = new HashSet<>();
 
-        Teacher teacher = new Teacher("Sam",null);
-        Student student = new Student("Bob",courses);
-        Course course = new Course("Math",students,teacher,tasks);
-        Task task = new Task("Math","good","@#$",null,course);
-        Mark mark = new Mark(2,"@#$",null);
-        Answer answer = new Answer("@#$",task,mark);
-        courses.add(course);
+
+        Teacher teacher = new Teacher("Sam", null);
+        Student student = new Student("Bob", null);
         students.add(student);
+        Mark mark = new Mark(2, "@#$", null);
+        Answer answer = new Answer("@#$", null, null);
+        Task task = new Task("Math", "good", "@#$", null, null);
         tasks.add(task);
+        Course course = new Course("Math", students, null, null);
 
+        course.setTeacher(teacher);
+        course.setTasks(tasks);
 
+        task.setCourse(course);
+
+        answer.setTask(task);
+        task.setAnswer(answer);
+        mark.setAnswer(answer);
+        answer.setMark(mark);
         em.getTransaction().begin();
         em.persist(course);
         em.getTransaction().commit();

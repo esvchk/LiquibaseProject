@@ -26,7 +26,7 @@ public class Task extends DataEntity implements Serializable {
     @Column
     private String feedback;
 
-    @OneToOne(mappedBy = "task")
+    @OneToOne(mappedBy = "task",cascade = CascadeType.ALL)
     private Answer answer;
 
     @ManyToOne(cascade = CascadeType.ALL)

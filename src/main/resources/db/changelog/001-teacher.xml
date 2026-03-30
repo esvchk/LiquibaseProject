@@ -15,9 +15,9 @@
 
             <column name="name" type="VARCHAR(255)"/>
 
-            <column name="create_date_time" type="TIMESTAMP"/>
+            <column name="createDateTime" type="TIMESTAMP"/>
 
-            <column name="update_date_time" type="TIMESTAMP"/>
+            <column name="updateDateTime" type="TIMESTAMP"/>
 
         </createTable>
 

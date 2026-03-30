@@ -21,7 +21,7 @@ public class Course extends DataEntity implements Serializable {
     @Column
     private String courseName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(name = "student_courses",
             joinColumns = {@JoinColumn(name = "course_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")})
@@ -31,7 +31,7 @@ public class Course extends DataEntity implements Serializable {
     @JoinColumn(name = "teacher_id",referencedColumnName = "id")
     private Teacher teacher;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
     private Set<Task> tasks = new HashSet<>();
 
     @Override

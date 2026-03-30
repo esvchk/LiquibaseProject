@@ -15,13 +15,13 @@
             <constraints primaryKey="true"/>
         </column>
 
-        <column name="course_name" type="VARCHAR(255)"/>
+        <column name="courseName" type="VARCHAR(255)"/>
 
         <column name="teacher_id" type="INT"/>
 
-        <column name="create_date_time" type="TIMESTAMP"/>
+        <column name="createDateTime" type="TIMESTAMP"/>
 
-        <column name="update_date_time" type="TIMESTAMP"/>
+        <column name="updateDateTime" type="TIMESTAMP"/>
 
     </createTable>
 
@@ -33,4 +33,15 @@
             constraintName="fk_course_teacher"/>
 
 </changeSet>
+    <changeSet id="11" author="team">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="hibernate_sequence"/></not>
+        </preConditions>
+        <createTable tableName="hibernate_sequence">
+            <column name="next_val" type="bigint"/>
+        </createTable>
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" value="1"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
