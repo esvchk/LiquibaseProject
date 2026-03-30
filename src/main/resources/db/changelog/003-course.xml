@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+<changeSet id="3" author="team">
+
+    <createTable tableName="course">
+
+        <column name="id" type="INT" autoIncrement="true">
+            <constraints primaryKey="true"/>
+        </column>
+
+        <column name="courseName" type="VARCHAR(255)"/>
+
+        <column name="teacher_id" type="INT"/>
+
+        <column name="createDateTime" type="TIMESTAMP"/>
+
+        <column name="updateDateTime" type="TIMESTAMP"/>
+
+    </createTable>
+
+    <addForeignKeyConstraint
+            baseTableName="course"
+            baseColumnNames="teacher_id"
+            referencedTableName="teacher"
+            referencedColumnNames="id"
+            constraintName="fk_course_teacher"/>
+
+</changeSet>
+    <changeSet id="11" author="team">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="hibernate_sequence"/></not>
+        </preConditions>
+        <createTable tableName="hibernate_sequence">
+            <column name="next_val" type="bigint"/>
+        </createTable>
+        <insert tableName="hibernate_sequence">
+            <column name="next_val" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -20,7 +20,13 @@ public class Task extends DataEntity implements Serializable {
     @Column
     private String name;
 
-    @OneToOne(mappedBy = "task")
+    @Column
+    private String mark;
+
+    @Column
+    private String feedback;
+
+    @OneToOne(mappedBy = "task",cascade = CascadeType.ALL)
     private Answer answer;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -44,8 +50,8 @@ public class Task extends DataEntity implements Serializable {
     public String toString() {
         return "Task{" +
                 "name='" + name + '\'' +
-                ", answer=" + answer +
-                ", course=" + course +
+                ", mark='" + mark + '\'' +
+                ", feedback='" + feedback + '\'' +
                 '}';
     }
 }

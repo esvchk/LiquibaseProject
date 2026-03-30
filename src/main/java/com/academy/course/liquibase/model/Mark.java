@@ -15,6 +15,7 @@ import java.io.Serializable;
 public class Mark extends DataEntity implements Serializable {
 
     @Column
+
     private Integer mark;
 
     @Column
