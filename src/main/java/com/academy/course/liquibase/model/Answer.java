@@ -21,7 +21,7 @@ public class Answer extends DataEntity implements Serializable {
     @JoinColumn(name = "task_id")
     private Task task;
 
-    @OneToOne(mappedBy = "answer",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "answer")
     private Mark mark;
 
 

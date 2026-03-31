@@ -1,14 +1,22 @@
 package com.academy.course.liquibase;
 
+import com.academy.course.liquibase.dao.course.CourseDAO;
+import com.academy.course.liquibase.dao.course.CourseDAOImpl;
+import com.academy.course.liquibase.dao.student.StudentDAO;
+import com.academy.course.liquibase.dao.student.StudentDAOImpl;
+import com.academy.course.liquibase.dao.teacher.TeacherDAO;
+import com.academy.course.liquibase.dao.teacher.TeacherDAOImpl;
 import com.academy.course.liquibase.model.*;
 import com.academy.course.liquibase.utils.HibernateUtil;
 
 import javax.persistence.EntityManager;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
 public class LiquibaseApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+
 
         EntityManager em = HibernateUtil.getEntityManager();
 
@@ -17,27 +25,38 @@ public class LiquibaseApp {
         Set<Task> tasks = new HashSet<>();
 
 
-        Teacher teacher = new Teacher("Sam", null);
-        Student student = new Student("Bob", courses);
+        Teacher teacher = new Teacher("loh",null);
+        Student student = new Student("Stifler",courses);
+        Course course = new Course("Biology",students,teacher,tasks);
+        Task task = new Task("Math",null,course);
+        Mark mark = new Mark(2,"@#$",null);
+        Answer answer = new Answer("@#$",task,mark);
+
+
+
+        courses.add(course);
         students.add(student);
-        Mark mark = new Mark(2, "@#$", null);
-        Answer answer = new Answer("@#$", null, null);
-        Task task = new Task("Math", null, null);
         tasks.add(task);
-        Course course = new Course("Math", students, null, null);
-
-        course.setTeacher(teacher);
-        course.setTasks(tasks);
-
-        task.setCourse(course);
-
-        answer.setTask(task);
-        task.setAnswer(answer);
         mark.setAnswer(answer);
-        answer.setMark(mark);
-        em.getTransaction().begin();
-        em.persist(course);
-        em.getTransaction().commit();
+
+
+//        em.getTransaction().begin();
+//        em.persist(teacher);
+//        em.persist(course);
+//        em.persist(student);
+//        em.persist(task);
+//        em.persist(mark);
+//        em.persist(answer);
+
+        TeacherDAO teacherDAO = new TeacherDAOImpl();
+        teacherDAO.save(teacher);
+        StudentDAO studentDAO = new StudentDAOImpl();
+        studentDAO.save(student);
+        CourseDAO courseDAO = new CourseDAOImpl();
+        courseDAO.save(course);
+
+
+//        em.getTransaction().commit();
 
 //        Query query = em.createQuery("From Student std where std.studentName like :name order by std.studentName desc");
 //        query.setParameter("name","Bill%").getResultList().forEach(System.out::println);

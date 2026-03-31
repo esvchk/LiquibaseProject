@@ -15,13 +15,12 @@ import java.io.Serializable;
 public class Mark extends DataEntity implements Serializable {
 
     @Column
-
     private Integer mark;
 
     @Column
     private String feedback;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "answer_id")
     private Answer answer;
 }

@@ -1,13 +1,14 @@
 package com.academy.course.liquibase.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -20,10 +20,10 @@ public class Task extends DataEntity implements Serializable {
     @Column
     private String name;
 
-    @OneToOne(mappedBy = "task",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "task")
     private Answer answer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
 
