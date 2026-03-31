@@ -18,11 +18,11 @@ public class LiquibaseApp {
 
 
         Teacher teacher = new Teacher("Sam", null);
-        Student student = new Student("Bob", null);
+        Student student = new Student("Bob", courses);
         students.add(student);
         Mark mark = new Mark(2, "@#$", null);
         Answer answer = new Answer("@#$", null, null);
-        Task task = new Task("Math", "good", "@#$", null, null);
+        Task task = new Task("Math", null, null);
         tasks.add(task);
         Course course = new Course("Math", students, null, null);
 
