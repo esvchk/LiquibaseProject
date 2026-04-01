@@ -26,5 +26,3 @@ public class DataEntity{
     private LocalDateTime updateDateTime;
 
 }
-
-

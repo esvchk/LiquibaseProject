@@ -21,6 +21,10 @@ public class Answer extends DataEntity implements Serializable {
     @JoinColumn(name = "task_id")
     private Task task;
 
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
     @OneToOne(mappedBy = "answer")
     private Mark mark;
 

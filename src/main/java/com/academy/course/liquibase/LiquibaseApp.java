@@ -22,15 +22,16 @@ public class LiquibaseApp {
 
         Set<Student> students = new HashSet<>();
         Set<Course> courses = new HashSet<>();
+        Set<Answer> answers = new HashSet<>();
         Set<Task> tasks = new HashSet<>();
 
 
         Teacher teacher = new Teacher("loh",null);
-        Student student = new Student("Stifler",courses);
+        Student student = new Student("Stifler",courses, answers);
         Course course = new Course("Biology",students,teacher,tasks);
         Task task = new Task("Math",null,course);
         Mark mark = new Mark(2,"@#$",null);
-        Answer answer = new Answer("@#$",task,mark);
+        Answer answer = new Answer("@#$", task, student, mark);
 
 
 
