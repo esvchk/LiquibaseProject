@@ -31,7 +31,7 @@ public class Course extends DataEntity implements Serializable {
 
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "courses")
     private Set<Teacher> teachers;
 
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
@@ -54,7 +54,7 @@ public class Course extends DataEntity implements Serializable {
     public String toString() {
         return "Course{" +
                 "courseName='" + courseName + '\'' +
-                ", teacher=" + teacher +
+                ", teacher=" + teachers +
                 '}';
     }
 }

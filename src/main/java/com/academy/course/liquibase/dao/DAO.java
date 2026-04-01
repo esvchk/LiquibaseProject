@@ -9,5 +9,5 @@ public interface DAO<T> {
 
     void update(T t);
 
-    int delete(Serializable id);
+    void delete(Serializable id);
 }

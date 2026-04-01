@@ -23,7 +23,7 @@ public class Teacher extends DataEntity implements Serializable {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "teachers_cources",
+    @JoinTable(name = "teachers_courses",
     joinColumns = {@JoinColumn(name = "teacher_id")},
     inverseJoinColumns = {@JoinColumn(name = "course_id")})
     private Set<Course> courses;
