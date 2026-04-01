@@ -27,9 +27,12 @@ public class Course extends DataEntity implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "student_id")})
     private Set<Student> students = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id",referencedColumnName = "id")
-    private Teacher teacher;
+
+
+
+
+    @ManyToMany
+    private Set<Teacher> teachers;
 
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
     private Set<Task> tasks = new HashSet<>();

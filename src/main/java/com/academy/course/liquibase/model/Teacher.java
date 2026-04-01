@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +22,11 @@ public class Teacher extends DataEntity implements Serializable {
     @Column
     private String name;
 
-    @OneToOne(mappedBy = "teacher")
-    private Course course;
+    @ManyToMany
+    @JoinTable(name = "teachers_cources",
+    joinColumns = {@JoinColumn(name = "teacher_id")},
+    inverseJoinColumns = {@JoinColumn(name = "course_id")})
+    private Set<Course> courses;
 
 
     @Override
