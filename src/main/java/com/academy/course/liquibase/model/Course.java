@@ -52,9 +52,6 @@ public class Course extends DataEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "courseName='" + courseName + '\'' +
-                ", teacher=" + teachers +
-                '}';
+        return "Course{ courseName=}";
     }
 }

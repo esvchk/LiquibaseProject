@@ -45,8 +45,6 @@ public class Teacher extends DataEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Teacher{ name= name}";
     }
 }

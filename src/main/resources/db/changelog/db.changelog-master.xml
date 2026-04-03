@@ -12,5 +12,6 @@
     <include file="005-answer.xml" relativeToChangelogFile="true"/>
     <include file="006-mark.xml" relativeToChangelogFile="true"/>
     <include file="007-student-courses.xml" relativeToChangelogFile="true"/>
+    <include file="008-teachers-courses.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

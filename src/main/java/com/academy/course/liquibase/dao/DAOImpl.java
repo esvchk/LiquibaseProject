@@ -19,7 +19,7 @@ public class DAOImpl<T> implements DAO<T> {
     public T save(T t) {
         try {
             em.getTransaction().begin();
-            em.persist(t);
+            em.merge(t);
             em.getTransaction().commit();
         } catch (HibernateException e) {
             log.error("error");
