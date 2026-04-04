@@ -19,7 +19,7 @@ public class LiquibaseApp {
         Teacher teacher = new Teacher("Sam",null);
         Student student = new Student("Bob",courses);
         Course course = new Course("Math",students,teacher,tasks);
-        Task task = new Task("Math","good","@#$",null,course);
+        Task task = new Task("Math",null,course);
         Mark mark = new Mark(2,"@#$",null);
         Answer answer = new Answer("@#$",task,mark);
         courses.add(course);
@@ -28,9 +28,11 @@ public class LiquibaseApp {
 
 
         em.getTransaction().begin();
+        em.persist(teacher);
         em.persist(course);
         em.getTransaction().commit();
 
+        em.close();
 //        Query query = em.createQuery("From Student std where std.studentName like :name order by std.studentName desc");
 //        query.setParameter("name","Bill%").getResultList().forEach(System.out::println);
 
