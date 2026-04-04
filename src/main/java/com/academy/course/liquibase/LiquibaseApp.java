@@ -22,7 +22,7 @@ public class LiquibaseApp {
 
         Teacher teacher = new Teacher("Bill",null);
         Student student = new Student("Bob",courses,null);
-        Course course = new Course("Math",students,teacher,tasks);
+        Course course = new Course("History",students,teacher,tasks);
         Task task = new Task("Math",course);
         Mark mark = new Mark(2,"@#$",null);
         Answer answer = new Answer("@#$",task,student);
@@ -35,7 +35,7 @@ public class LiquibaseApp {
 //        courseDAO.addTeacher(teacher);
         TeacherDAO teacherDAO = new TeacherDAOImpl(em,teacher);
 //        teacherDAO.addCourse(course);
-        System.out.println(teacherDAO.getCourseByTeacherId(4));
+        teacherDAO.updateCourseByTeacherId(course,7);
 
 //        Query query = em.createQuery("From Student std where std.studentName like :name order by std.studentName desc");
 //        query.setParameter("name","Bill%").getResultList().forEach(System.out::println);

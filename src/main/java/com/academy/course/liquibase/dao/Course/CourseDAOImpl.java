@@ -21,7 +21,7 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
     @Override
     public void addTeacher(Teacher teacher) {
         entityManager.getTransaction().begin();
-        entityManager.merge(teacher);
+        entityManager.persist(teacher);
         entityManager.getTransaction().commit();
     }
 

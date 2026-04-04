@@ -19,7 +19,7 @@ public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
     @Override
     public void addCourse(Course course) {
         entityManager.getTransaction().begin();
-        entityManager.merge(course);
+        entityManager.persist(course);
         entityManager.getTransaction().commit();
     }
 
@@ -33,6 +33,10 @@ public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
 
     @Override
     public void updateCourseByTeacherId(Course course, Integer teacherId) {
-
+        entityManager.getTransaction().begin();
+        Teacher teacher1 = entityManager.find(Teacher.class,teacherId);
+        course = teacher1.getCourse();
+        entityManager.merge(course);
+        entityManager.getTransaction().commit();
     }
 }
