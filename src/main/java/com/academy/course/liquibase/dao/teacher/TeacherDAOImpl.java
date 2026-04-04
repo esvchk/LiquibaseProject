@@ -7,6 +7,8 @@ import com.academy.course.liquibase.utils.HibernateUtil;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
@@ -26,10 +28,11 @@ public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
         teacher.getCourses().add(course);
         course.getTeachers().add(teacher);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     @Override
-    public Set<Course> getCourses(){
+    public Set<Course> getCourses() {
         entityManager.getTransaction().begin();
         Teacher teacher1 = entityManager.find(Teacher.class,teacher.getId());
         return teacher1.getCourses();

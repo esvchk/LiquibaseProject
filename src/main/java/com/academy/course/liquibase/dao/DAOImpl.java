@@ -21,6 +21,7 @@ public class DAOImpl<T> implements DAO<T> {
             em.getTransaction().begin();
             em.merge(t);
             em.getTransaction().commit();
+            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }
@@ -34,6 +35,7 @@ public class DAOImpl<T> implements DAO<T> {
             em.getTransaction().begin();
             t = em.find(tclass, id);
             em.getTransaction().commit();
+            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }
@@ -46,6 +48,7 @@ public class DAOImpl<T> implements DAO<T> {
             em.getTransaction().begin();
             em.merge(t);
             em.getTransaction().commit();
+            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }
@@ -57,6 +60,7 @@ public class DAOImpl<T> implements DAO<T> {
             em.getTransaction().begin();
             em.remove(get(id));
             em.getTransaction().commit();
+            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }

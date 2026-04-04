@@ -23,6 +23,7 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO{
         course.getTeachers().add(teacher);
         teacher.getCourses().add(course);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     @Override
