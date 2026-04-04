@@ -21,20 +21,21 @@ public class LiquibaseApp {
         Set<Task> tasks = new HashSet<>();
 
         Teacher teacher = new Teacher("Bill",null);
-        Student student = new Student("Bob",courses);
+        Student student = new Student("Bob",courses,null);
         Course course = new Course("Math",students,teacher,tasks);
         Task task = new Task("Math",course);
         Mark mark = new Mark(2,"@#$",null);
-        Answer answer = new Answer("@#$",task);
+        Answer answer = new Answer("@#$",task,student);
         courses.add(course);
         students.add(student);
         tasks.add(task);
 
 
         CourseDAO courseDAO = new CourseDAOImpl(em,course);
-        courseDAO.addTeacher(teacher);
+//        courseDAO.addTeacher(teacher);
         TeacherDAO teacherDAO = new TeacherDAOImpl(em,teacher);
-        teacherDAO.addCourse(course);
+//        teacherDAO.addCourse(course);
+        System.out.println(teacherDAO.getCourseByTeacherId(4));
 
 //        Query query = em.createQuery("From Student std where std.studentName like :name order by std.studentName desc");
 //        query.setParameter("name","Bill%").getResultList().forEach(System.out::println);

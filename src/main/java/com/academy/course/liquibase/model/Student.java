@@ -24,6 +24,11 @@ public class Student extends DataEntity implements Serializable {
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "answer_id",referencedColumnName = "id")
+    private Answer answer;
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
