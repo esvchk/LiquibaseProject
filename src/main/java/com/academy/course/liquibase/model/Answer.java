@@ -17,12 +17,10 @@ public class Answer extends DataEntity implements Serializable {
     @Column
     private String studentAnswer;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "task_id")
     private Task task;
 
-    @OneToOne(mappedBy = "answer")
-    private Mark mark;
 
 
 
