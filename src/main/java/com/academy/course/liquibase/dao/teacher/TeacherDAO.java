@@ -11,4 +11,6 @@ public interface TeacherDAO extends DAO<Teacher> {
     void addCourse(Course course);
 
     Set<Course> getCourses();
+
+    void removeCourse(Course course);
 }

@@ -2,6 +2,7 @@ package com.academy.course.liquibase.dao;
 
 import com.academy.course.liquibase.dao.teacher.TeacherDAOImpl;
 import com.academy.course.liquibase.utils.HibernateUtil;
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
@@ -9,19 +10,22 @@ import org.hibernate.HibernateException;
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 
+@Getter
 public class DAOImpl<T> implements DAO<T> {
-    Class<T> tclass;
-
     private static final Logger log = LogManager.getLogger(TeacherDAOImpl.class);
-    private EntityManager em = HibernateUtil.getEntityManager();
+    private EntityManager em;
+    private Class<T> tclass;
+
+    public DAOImpl(EntityManager em) {
+        this.em = em;
+    }
 
     @Override
     public T save(T t) {
         try {
             em.getTransaction().begin();
-            em.merge(t);
+            em.persist(t);
             em.getTransaction().commit();
-            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }
@@ -35,7 +39,6 @@ public class DAOImpl<T> implements DAO<T> {
             em.getTransaction().begin();
             t = em.find(tclass, id);
             em.getTransaction().commit();
-            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }
@@ -48,7 +51,6 @@ public class DAOImpl<T> implements DAO<T> {
             em.getTransaction().begin();
             em.merge(t);
             em.getTransaction().commit();
-            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }
@@ -60,7 +62,6 @@ public class DAOImpl<T> implements DAO<T> {
             em.getTransaction().begin();
             em.remove(get(id));
             em.getTransaction().commit();
-            em.close();
         } catch (HibernateException e) {
             log.error("error");
         }

@@ -11,7 +11,7 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO{
     private EntityManager entityManager;
     private Course course;
     public CourseDAOImpl(EntityManager entityManager, Course course) {
-        this.entityManager = entityManager;
+        super(entityManager);
         this.course = course;
     }
 
@@ -23,7 +23,6 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO{
         course.getTeachers().add(teacher);
         teacher.getCourses().add(course);
         entityManager.getTransaction().commit();
-        entityManager.close();
     }
 
     @Override
