@@ -2,6 +2,8 @@ package com.academy.course.liquibase.dao.teacher;
 
 import com.academy.course.liquibase.dao.DAOImpl;
 import com.academy.course.liquibase.model.Course;
+import com.academy.course.liquibase.model.Student;
+import com.academy.course.liquibase.model.Task;
 import com.academy.course.liquibase.model.Teacher;
 
 import javax.persistence.EntityManager;
@@ -13,6 +15,7 @@ public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
     public TeacherDAOImpl(EntityManager entityManager, Teacher teacher) {
         this.entityManager = entityManager;
         this.teacher = teacher;
+
     }
 
     @Override
@@ -24,10 +27,12 @@ public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
 
     @Override
     public Course getCourseByTeacherId(Integer id) {
-        entityManager.getTransaction().begin();
+
         Teacher teacher1 = entityManager.find(Teacher.class,id);
         entityManager.getTransaction().commit();
         return teacher1.getCourse();
     }
+
+
 
 }

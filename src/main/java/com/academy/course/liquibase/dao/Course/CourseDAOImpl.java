@@ -3,19 +3,22 @@ package com.academy.course.liquibase.dao.Course;
 
 import com.academy.course.liquibase.dao.DAOImpl;
 import com.academy.course.liquibase.model.Course;
+import com.academy.course.liquibase.model.Student;
+import com.academy.course.liquibase.model.Task;
 import com.academy.course.liquibase.model.Teacher;
 
 import javax.persistence.EntityManager;
+import java.util.HashSet;
 import java.util.Set;
 
 public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
 
     private EntityManager entityManager;
-    private Course course;
+    private Task task;
+    private Student student;
 
-    public CourseDAOImpl(EntityManager entityManager, Course course) {
+    public CourseDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.course = course;
     }
 
     @Override
@@ -27,7 +30,9 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
 
     @Override
     public Teacher getTeacherByCourseId(Integer id){
-        entityManager.getTransaction().begin();
+        if (!entityManager.isOpen()) {
+            entityManager.getTransaction().begin();
+        }
         Course course1 = entityManager.find(Course.class,id);
         return course1.getTeacher();
     }
@@ -41,6 +46,16 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
         entityManager.flush();
         entityManager.refresh(teacher);
         entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public Set<Student> setStudentOnCourse(Set<Student> students,Integer courseId) {
+        entityManager.getTransaction().begin();
+        Course course = entityManager.find(Course.class,courseId);
+        course.setStudents(students);
+        entityManager.flush();
+        entityManager.getTransaction().commit();
+        return students;
     }
 
 
