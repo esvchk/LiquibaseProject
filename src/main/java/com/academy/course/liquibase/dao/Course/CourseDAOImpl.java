@@ -34,7 +34,13 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
 
     @Override
     public void updateTeacherByCourseId(Teacher teacher, Integer courseId) {
-
+        entityManager.getTransaction().begin();
+        Course course1 = entityManager.find(Course.class,courseId);
+        course1.setTeacher(teacher);
+        teacher = course1.getTeacher();
+        entityManager.flush();
+        entityManager.refresh(teacher);
+        entityManager.getTransaction().commit();
     }
 
 

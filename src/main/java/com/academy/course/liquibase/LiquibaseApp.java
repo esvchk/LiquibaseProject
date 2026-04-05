@@ -20,7 +20,7 @@ public class LiquibaseApp {
         Set<Course> courses = new HashSet<>();
         Set<Task> tasks = new HashSet<>();
 
-        Teacher teacher = new Teacher("Bill",null);
+        Teacher teacher = new Teacher("Bob",null);
         Student student = new Student("Bob",courses,null);
         Course course = new Course("History",students,teacher,tasks);
         Task task = new Task("Math",course);
@@ -35,7 +35,7 @@ public class LiquibaseApp {
 //        courseDAO.addTeacher(teacher);
         TeacherDAO teacherDAO = new TeacherDAOImpl(em,teacher);
 //        teacherDAO.addCourse(course);
-        teacherDAO.updateCourseByTeacherId(course,7);
+        courseDAO.updateTeacherByCourseId(teacher,8);
 
 //        Query query = em.createQuery("From Student std where std.studentName like :name order by std.studentName desc");
 //        query.setParameter("name","Bill%").getResultList().forEach(System.out::println);

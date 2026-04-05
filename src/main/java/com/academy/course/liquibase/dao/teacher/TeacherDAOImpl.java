@@ -5,7 +5,6 @@ import com.academy.course.liquibase.model.Course;
 import com.academy.course.liquibase.model.Teacher;
 
 import javax.persistence.EntityManager;
-import java.util.Set;
 
 public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
     private EntityManager entityManager;
@@ -31,12 +30,4 @@ public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
         return teacher1.getCourse();
     }
 
-    @Override
-    public void updateCourseByTeacherId(Course course, Integer teacherId) {
-        entityManager.getTransaction().begin();
-        Teacher teacher1 = entityManager.find(Teacher.class,teacherId);
-        course = teacher1.getCourse();
-        entityManager.merge(course);
-        entityManager.getTransaction().commit();
-    }
 }

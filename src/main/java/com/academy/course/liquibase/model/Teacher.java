@@ -3,6 +3,7 @@ package com.academy.course.liquibase.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Teacher extends DataEntity implements Serializable {
 
     @Column
     private String name;
+
 
     @OneToOne(mappedBy = "teacher")
     private Course course;
