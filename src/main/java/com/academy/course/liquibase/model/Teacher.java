@@ -25,7 +25,7 @@ public class Teacher extends DataEntity implements Serializable {
     @Column
     private String name;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(name = "teachers_courses",
     joinColumns = {@JoinColumn(name = "teacher_id")},
     inverseJoinColumns = {@JoinColumn(name = "course_id")})

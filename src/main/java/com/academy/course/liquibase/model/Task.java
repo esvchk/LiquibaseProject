@@ -18,9 +18,8 @@ import java.util.Set;
 @Table
 public class Task extends DataEntity implements Serializable {
 
-    public Task(String name, Course course) {
+    public Task(String name) {
         this.name = name;
-        this.course = course;
     }
 
     @Column

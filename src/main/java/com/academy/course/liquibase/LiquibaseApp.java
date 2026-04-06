@@ -16,10 +16,13 @@ public class LiquibaseApp {
     public static void main(String[] args) {
         Course course = new Course("name!!");
         Teacher teacher = new Teacher("name!");
+        Task task = new Task("name");
+
+
         teacher.getCourses().add(course);
-        Task task = new Task("name",course);
-        task.setCourse(course);
         course.getTasks().add(task);
+        task.setCourse(course);
+
         EntityManager em = HibernateUtil.getEntityManager();
         TeacherDAO teacherDAO = new TeacherDAOImpl(em);
         CourseDAO courseDAO = new CourseDAOImpl(em);
