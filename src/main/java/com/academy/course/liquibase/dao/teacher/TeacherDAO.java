@@ -8,9 +8,10 @@ import java.util.Set;
 
 public interface TeacherDAO extends DAO<Teacher> {
 
-    void addCourse(Course course);
+    void addCourse(Teacher teacher, Course course);
 
-    Set<Course> getCourses();
+    Set<Course> getCourses(Teacher teacher);
 
-    void removeCourse(Course course);
+    void removeCourse(Teacher teacher, Course course);
+
 }

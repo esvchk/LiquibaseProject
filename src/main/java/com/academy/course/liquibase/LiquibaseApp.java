@@ -1,26 +1,30 @@
 package com.academy.course.liquibase;
 
-import com.academy.course.liquibase.dao.Course.CourseDAO;
+
+import com.academy.course.liquibase.dao.course.CourseDAO;
 import com.academy.course.liquibase.dao.course.CourseDAOImpl;
 import com.academy.course.liquibase.dao.teacher.TeacherDAO;
 import com.academy.course.liquibase.dao.teacher.TeacherDAOImpl;
 import com.academy.course.liquibase.model.Course;
+import com.academy.course.liquibase.model.Task;
 import com.academy.course.liquibase.model.Teacher;
 import com.academy.course.liquibase.utils.HibernateUtil;
 
 import javax.persistence.EntityManager;
-import java.util.HashSet;
 
 public class LiquibaseApp {
     public static void main(String[] args) {
-
-        Teacher teacher = new Teacher("myName@@@!", new HashSet<>());
-        Course course = new Course("myName###1111111!", null, new HashSet<>(), null);
-        EntityManager entityManager = HibernateUtil.getEntityManager();
-        TeacherDAO teacherDAO = new TeacherDAOImpl(entityManager,teacher);
+        Course course = new Course("name!!");
+        Teacher teacher = new Teacher("name!");
+        teacher.getCourses().add(course);
+        Task task = new Task("name",course);
+        task.setCourse(course);
+        course.getTasks().add(task);
+        EntityManager em = HibernateUtil.getEntityManager();
+        TeacherDAO teacherDAO = new TeacherDAOImpl(em);
+        CourseDAO courseDAO = new CourseDAOImpl(em);
         teacherDAO.save(teacher);
-        CourseDAO courseDAO = new CourseDAOImpl(entityManager, course);
-        courseDAO.save(course);
-        teacherDAO.addCourse(course);
+
+    /*    teacherDAO.removeCourse(teacher,course);*/
     }
 }

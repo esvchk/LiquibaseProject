@@ -8,34 +8,32 @@ import javax.persistence.EntityManager;
 import java.util.Set;
 
 public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
-    private Teacher teacher;
 
-    public TeacherDAOImpl(EntityManager em, Teacher teacher) {
-        super(em);
-        this.teacher = teacher;
+    public TeacherDAOImpl(EntityManager em) {
+        super(em, Teacher.class);
     }
 
-
-
     @Override
-    public void addCourse(Course course) {
+    public void addCourse(Teacher teacher, Course course) {
         super.getEm().getTransaction().begin();
         teacher.getCourses().add(course);
         course.getTeachers().add(teacher);
         super.getEm().getTransaction().commit();
+
     }
 
     @Override
-    public Set<Course> getCourses() {
+    public Set<Course> getCourses(Teacher teacher) {
         super.getEm().getTransaction().begin();
         Teacher teacher1 = super.getEm().find(super.getTclass(), teacher.getId());
         return teacher1.getCourses();
     }
 
     @Override
-    public void removeCourse(Course course) {
+    public void removeCourse(Teacher teacher, Course course) {
         super.getEm().getTransaction().begin();
         teacher.getCourses().remove(course);
+        course.getTeachers().remove(teacher);
         super.getEm().getTransaction().commit();
     }
 }

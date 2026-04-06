@@ -1,8 +1,6 @@
 
 package com.academy.course.liquibase.dao.course;
-
 import com.academy.course.liquibase.dao.DAOImpl;
-import com.academy.course.liquibase.dao.Course.CourseDAO;
 import com.academy.course.liquibase.model.Course;
 import com.academy.course.liquibase.model.Teacher;
 
@@ -10,27 +8,26 @@ import javax.persistence.EntityManager;
 import java.util.Set;
 
 public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
-    private EntityManager entityManager;
-    private Course course;
-    public CourseDAOImpl(EntityManager entityManager, Course course) {
-        super(entityManager);
-        this.course = course;
+
+    public CourseDAOImpl(EntityManager em) {
+        super(em, Course.class);
     }
 
     @Override
-    public void addTeacher(Teacher teacher) {
-        entityManager.getTransaction().begin();
-        course = entityManager.merge(course);
-        teacher = entityManager.merge(teacher);
+    public void addTeacher(Course course,Teacher teacher) {
+        super.getEm().getTransaction().begin();
+        course = super.getEm().merge(course);
+        teacher = super.getEm().merge(teacher);
         course.getTeachers().add(teacher);
         teacher.getCourses().add(course);
-        entityManager.getTransaction().commit();
+        super.getEm().getTransaction().commit();
     }
 
     @Override
-    public Set<Teacher> getTeachers(){
-        entityManager.getTransaction().begin();
-        Course course1 = entityManager.find(Course.class,course.getId());
+    public Set<Teacher> getTeachers(Course course){
+        super.getEm().getTransaction().begin();
+        Course course1 = super.getEm().find(Course.class,course.getId());
+        super.getEm().getTransaction().commit();
         return course1.getTeachers();
     }
 }

@@ -16,8 +16,9 @@ public class DAOImpl<T> implements DAO<T> {
     private EntityManager em;
     private Class<T> tclass;
 
-    public DAOImpl(EntityManager em) {
+    public DAOImpl(EntityManager em, Class<T> tclass) {
         this.em = em;
+        this.tclass =tclass;
     }
 
     @Override
@@ -36,9 +37,9 @@ public class DAOImpl<T> implements DAO<T> {
     public T get(Serializable id) {
         T t = null;
         try {
-            em.getTransaction().begin();
+
             t = em.find(tclass, id);
-            em.getTransaction().commit();
+
         } catch (HibernateException e) {
             log.error("error");
         }

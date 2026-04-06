@@ -17,10 +17,16 @@ import java.util.Set;
 @Entity
 @Table
 public class Task extends DataEntity implements Serializable {
+
+    public Task(String name, Course course) {
+        this.name = name;
+        this.course = course;
+    }
+
     @Column
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
 
@@ -29,8 +35,6 @@ public class Task extends DataEntity implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Task task = (Task) o;
         return Objects.equals(getId(),task.getId());
     }
