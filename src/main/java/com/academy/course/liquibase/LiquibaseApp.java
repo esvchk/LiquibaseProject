@@ -1,7 +1,7 @@
 package com.academy.course.liquibase;
 
 import com.academy.course.liquibase.dao.Course.CourseDAO;
-import com.academy.course.liquibase.dao.Course.CourseDAOImpl;
+import com.academy.course.liquibase.dao.course.CourseDAOImpl;
 import com.academy.course.liquibase.dao.teacher.TeacherDAO;
 import com.academy.course.liquibase.dao.teacher.TeacherDAOImpl;
 import com.academy.course.liquibase.model.Course;

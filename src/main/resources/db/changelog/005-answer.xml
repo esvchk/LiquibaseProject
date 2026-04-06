@@ -9,21 +9,31 @@
 
 <changeSet id="5" author="team">
 
+
+
     <createTable tableName="answer">
 
-        <column name="id" type="INT" autoIncrement="true">
-            <constraints primaryKey="true"/>
-        </column>
 
-        <column name="studentAnswer" type="VARCHAR(255)"/>
-
+        <column name="student_id" type="INT"/>
         <column name="task_id" type="INT"/>
-
+        <column name="studentAnswer" type="VARCHAR(255)"/>
+        <column name="mark" type="INT"/>
         <column name="createDateTime" type="TIMESTAMP"/>
-
         <column name="updateDateTime" type="TIMESTAMP"/>
 
+
+
     </createTable>
+    <addPrimaryKey tableName="answer" columnNames="student_id, task_id"
+    constraintName="answer_pk"/>
+
+
+    <addForeignKeyConstraint
+            baseTableName="answer"
+            baseColumnNames="student_id"
+            referencedTableName="student"
+            referencedColumnNames="id"
+            constraintName="fk_answer_student"/>
 
     <addForeignKeyConstraint
             baseTableName="answer"

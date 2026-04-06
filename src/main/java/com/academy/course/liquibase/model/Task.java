@@ -24,6 +24,9 @@ public class Task extends DataEntity implements Serializable {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @OneToMany(mappedBy = "task")
+    private Set<Answer> answers;
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

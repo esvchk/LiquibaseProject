@@ -1,13 +1,15 @@
-package com.academy.course.liquibase.dao.Course;
+
+package com.academy.course.liquibase.dao.course;
 
 import com.academy.course.liquibase.dao.DAOImpl;
+import com.academy.course.liquibase.dao.Course.CourseDAO;
 import com.academy.course.liquibase.model.Course;
 import com.academy.course.liquibase.model.Teacher;
 
 import javax.persistence.EntityManager;
 import java.util.Set;
 
-public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO{
+public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
     private EntityManager entityManager;
     private Course course;
     public CourseDAOImpl(EntityManager entityManager, Course course) {

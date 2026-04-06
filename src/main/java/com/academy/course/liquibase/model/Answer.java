@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -17,12 +18,15 @@ public class Answer extends DataEntity implements Serializable {
     @Column
     private String studentAnswer;
 
-    @OneToOne
+
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
+    @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
-
-
-
 
 
 }

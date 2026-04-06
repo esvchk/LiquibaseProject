@@ -23,18 +23,11 @@ public class Student extends DataEntity implements Serializable {
     @Column
     private String studentName;
 
-
-
-
-
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
-
-
-
-
-
+    @OneToMany(mappedBy = "student")
+    private Set<Answer> answers = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
