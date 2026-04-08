@@ -36,13 +36,11 @@ public class LiquibaseApp {
         StudentDAO studentDAO = new StudentDAOImpl(em);
         AnswerDAO answerDAO = new AnswerDAOImpl(em);
 
-        Teacher teacher = teacherDAO.get(2);
-        teacher.getCourses().add(new Course());
-        teacher.getCourses().add(new Course());
-        teacher.getCourses().add(new Course("name"));
-        teacher.getCourses().add(new Course(" "));
-        System.out.println(teacher.getCourses());
-        System.out.println(teacherDAO.getCourses(teacher));
 
+        CourseDAO courseDAO = new CourseDAOImpl(em);
+        Course course = courseDAO.get(2);
+        TaskDAO taskDAO = new TaskDAOImpl(em);
+        Task task = taskDAO.get(3);
+        courseDAO.removeTask(course, task);
     }
 }

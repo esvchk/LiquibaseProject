@@ -19,4 +19,17 @@ public class CourseDAOImpl extends DAOImpl<Course> implements CourseDAO {
         task.setCourse(course);
         super.getEm().getTransaction().commit();
     }
+    @Override
+    public Set<Task> getTasks(Course course){
+        course = this.get(course.getId());
+        return course.getTasks();
+    }
+    @Override
+    public void removeTask(Course course, Task task){
+        super.getEm().getTransaction().begin();
+        course.getTasks().remove(task);
+        task.setCourse(null);
+        super.getEm().getTransaction().commit();
+
+    }
 }

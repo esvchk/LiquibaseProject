@@ -8,17 +8,13 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="8" author="team">
-
         <createTable tableName="teachers_courses">
-
             <column name="teacher_id" type="INT">
                 <constraints nullable="false"/>
             </column>
-
             <column name="course_id" type="INT">
                 <constraints nullable="false"/>
             </column>
-
         </createTable>
         <addForeignKeyConstraint
                 baseTableName="teachers_courses"
@@ -26,7 +22,6 @@
                 referencedTableName="course"
                 referencedColumnNames="id"
                 constraintName="fk_teachers_courses_course"/>
-
         <addForeignKeyConstraint
                 baseTableName="teachers_courses"
                 baseColumnNames="teacher_id"
