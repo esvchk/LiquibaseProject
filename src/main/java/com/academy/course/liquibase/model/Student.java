@@ -30,7 +30,7 @@ public class Student extends DataEntity implements Serializable {
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "student")
     private Set<Answer> answers = new HashSet<>();
 
     @Override

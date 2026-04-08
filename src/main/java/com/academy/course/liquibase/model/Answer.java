@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -24,6 +25,18 @@ public class Answer implements Serializable {
         this.task = task;
         this.mark = mark;
         this.feedback = feedback;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Answer answer = (Answer) o;
+        return Objects.equals(studentAnswer, answer.studentAnswer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(studentAnswer);
     }
 
     @Column
