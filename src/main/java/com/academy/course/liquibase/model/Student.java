@@ -54,4 +54,14 @@ public class Student extends DataEntity implements Serializable {
                 ", courses=" + courses +
                 '}';
     }
+
+    public  void addCourse(Course course){
+        this.getCourses().add(course);
+        course.getStudents().add(this);
+    }
+
+    public void addAnswer(Answer answer){
+        this.getAnswers().add(answer);
+        answer.setStudent(this);
+    }
 }

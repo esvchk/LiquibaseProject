@@ -16,14 +16,14 @@ public class TeacherDAOImpl extends DAOImpl<Teacher> implements TeacherDAO {
     @Override
     public void addCourse(Teacher teacher, Course course) {
         super.getEm().getTransaction().begin();
-        teacher.getCourses().add(course);
+        teacher.addCourse(course);
         super.getEm().getTransaction().commit();
 
     }
 
     @Override
     public Set<Course> getCourses(Teacher teacher) {
-        super.getEm().getTransaction().begin();
+        teacher = this.get(teacher.getId());
         return teacher.getCourses();
     }
 

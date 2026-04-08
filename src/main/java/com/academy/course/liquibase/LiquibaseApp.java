@@ -20,29 +20,29 @@ public class LiquibaseApp {
     public static void main(String[] args) {
         EntityManager em = HibernateUtil.getEntityManager();
 
+  /*      Teacher teacher = new Teacher("TeacherName");
         Course course = new Course("CourseName");
-        Course course1 = new Course("CourseName1");
-        Task task = new Task("taskName", course, null);
-        Teacher teacher = new Teacher("TeacherName");
-        teacher.getCourses().add(course);
-        task.setCourse(course);
-
-
+        Task task = new Task("taskName");
         Student student = new Student("studentName");
-        student.getCourses().add(course);
-        course.getStudents().add(student);
-        course.getTasks().add(task);
-        Answer answer = new Answer("studentAnswer", student, task, 10, "feedback");
-        student.getAnswers().add(answer);
+        Answer answer = new Answer("studentAnswer",10,"feedback");
+        teacher.addCourse(course);
+        course.addTask(task);
+        task.addAnswer(answer);
+        student.addCourse(course);
+        student.addAnswer(answer);*/
 
 
         TeacherDAO teacherDAO = new TeacherDAOImpl(em);
         StudentDAO studentDAO = new StudentDAOImpl(em);
         AnswerDAO answerDAO = new AnswerDAOImpl(em);
 
-        studentDAO.save(student);
-        teacherDAO.save(teacher);
-        answerDAO.save(answer);
+        Teacher teacher = teacherDAO.get(2);
+        teacher.getCourses().add(new Course());
+        teacher.getCourses().add(new Course());
+        teacher.getCourses().add(new Course("name"));
+        teacher.getCourses().add(new Course(" "));
+        System.out.println(teacher.getCourses());
+        System.out.println(teacherDAO.getCourses(teacher));
 
     }
 }

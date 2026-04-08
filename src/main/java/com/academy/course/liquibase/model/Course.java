@@ -52,4 +52,9 @@ public class Course extends DataEntity implements Serializable {
     public String toString() {
         return "Course courseName= " + courseName;
     }
+
+    public void addTask(Task task){
+        this.getTasks().add(task);
+        task.setCourse(this);
+    }
 }

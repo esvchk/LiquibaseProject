@@ -37,9 +37,7 @@ public class DAOImpl<T> implements DAO<T> {
     public T get(Serializable id) {
         T t = null;
         try {
-            em.getTransaction().begin();
             t = em.find(tclass, id);
-            em.getTransaction().commit();
         } catch (HibernateException e) {
             log.error("error");
         }

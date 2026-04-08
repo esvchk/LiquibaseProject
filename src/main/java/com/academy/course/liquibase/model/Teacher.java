@@ -50,4 +50,9 @@ public class Teacher extends DataEntity implements Serializable {
     public String toString() {
         return "Teacher{ name= name}";
     }
+
+    public void addCourse(Course course){
+        this.getCourses().add(course);
+        course.getTeachers().add(this);
+    }
 }

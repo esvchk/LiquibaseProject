@@ -14,9 +14,14 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
     @Override
     public void addAnswer(Student student, Answer answer) {
         super.getEm().getTransaction().begin();
-        answer.setStudent(student);
+        student.addAnswer(answer);
         super.getEm().getTransaction().commit();
+    }
 
+    public void getAnswers(Student student){
+/*        super.getEm().getTransaction().begin();
+        student.addAnswer(answer);
+        super.getEm().getTransaction().commit();*/
     }
 
 }

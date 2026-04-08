@@ -19,10 +19,8 @@ import java.util.Set;
 @Table
 public class Answer implements Serializable {
 
-    public Answer(String studentAnswer, Student student, Task task, int mark, String feedback) {
+    public Answer(String studentAnswer, int mark, String feedback) {
         this.studentAnswer = studentAnswer;
-        this.student = student;
-        this.task = task;
         this.mark = mark;
         this.feedback = feedback;
     }

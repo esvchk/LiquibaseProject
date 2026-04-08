@@ -30,7 +30,7 @@ public class Task extends DataEntity implements Serializable {
     private Course course;
 
     @OneToMany(mappedBy = "task")
-    private Set<Answer> answers;
+    private Set<Answer> answers = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
@@ -50,5 +50,9 @@ public class Task extends DataEntity implements Serializable {
                 ", mark='" +
                 ", feedback='" +
                 '}';
+    }
+    public void addAnswer(Answer answer){
+        this.getAnswers().add(answer);
+        answer.setTask(this);
     }
 }
