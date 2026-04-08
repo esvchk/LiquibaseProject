@@ -18,6 +18,13 @@ import java.util.Set;
 @Table
 public class Answer implements Serializable {
 
+    public Answer(String studentAnswer, Student student, Task task, int mark, String feedback) {
+        this.studentAnswer = studentAnswer;
+        this.student = student;
+        this.task = task;
+        this.mark = mark;
+        this.feedback = feedback;
+    }
 
     @Column
     private String studentAnswer;
@@ -31,6 +38,12 @@ public class Answer implements Serializable {
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
+
+    @Column
+    private int mark;
+
+    @Column
+    private String feedback;
 
     @CreationTimestamp
     private LocalDateTime createDateTime;

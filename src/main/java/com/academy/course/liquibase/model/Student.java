@@ -23,10 +23,14 @@ public class Student extends DataEntity implements Serializable {
     @Column
     private String studentName;
 
+    public Student(String studentName) {
+        this.studentName = studentName;
+    }
+
     @ManyToMany(mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.PERSIST)
     private Set<Answer> answers = new HashSet<>();
 
     @Override
@@ -39,7 +43,7 @@ public class Student extends DataEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(studentName);
     }
 
     @Override

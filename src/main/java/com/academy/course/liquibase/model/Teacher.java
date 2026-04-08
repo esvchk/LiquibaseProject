@@ -25,7 +25,7 @@ public class Teacher extends DataEntity implements Serializable {
     @Column
     private String name;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "teachers_courses",
     joinColumns = {@JoinColumn(name = "teacher_id")},
     inverseJoinColumns = {@JoinColumn(name = "course_id")})
@@ -43,7 +43,7 @@ public class Teacher extends DataEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return 15;
+        return Objects.hash(getName());
     }
 
     @Override

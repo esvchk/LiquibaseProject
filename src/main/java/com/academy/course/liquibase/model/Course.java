@@ -45,11 +45,11 @@ public class Course extends DataEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return 12;
+        return Objects.hash(getCourseName());
     }
 
     @Override
     public String toString() {
-        return "Course{ courseName=}";
+        return "Course courseName= " + courseName;
     }
 }

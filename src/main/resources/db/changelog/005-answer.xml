@@ -18,6 +18,7 @@
         <column name="task_id" type="INT"/>
         <column name="studentAnswer" type="VARCHAR(255)"/>
         <column name="mark" type="INT"/>
+        <column name="feedback" type="VARCHAR(255)"/>
         <column name="createDateTime" type="TIMESTAMP"/>
         <column name="updateDateTime" type="TIMESTAMP"/>
 
