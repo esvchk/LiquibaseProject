@@ -34,14 +34,18 @@ public class Task extends DataEntity implements Serializable {
 
     @Override
     public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Task task = (Task) o;
         return Objects.equals(getId(),task.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(getId());
     }
+
+
 
     @Override
     public String toString() {

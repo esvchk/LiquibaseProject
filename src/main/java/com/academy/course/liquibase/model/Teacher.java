@@ -43,7 +43,7 @@ public class Teacher extends DataEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName());
+        return Objects.hash(getId());
     }
 
     @Override

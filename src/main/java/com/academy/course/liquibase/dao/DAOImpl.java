@@ -1,6 +1,7 @@
 package com.academy.course.liquibase.dao;
 
 import com.academy.course.liquibase.dao.teacher.TeacherDAOImpl;
+import com.academy.course.liquibase.model.CompositePK;
 import com.academy.course.liquibase.utils.HibernateUtil;
 import lombok.Getter;
 import org.apache.logging.log4j.LogManager;

@@ -17,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table
+@IdClass(CompositePK.class)
 public class Answer implements Serializable {
 
     public Answer(String studentAnswer, int mark, String feedback) {

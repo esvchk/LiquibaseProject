@@ -41,9 +41,10 @@ public class Student extends DataEntity implements Serializable {
         return Objects.equals(getId(),student.getId());
     }
 
+
     @Override
     public int hashCode() {
-        return Objects.hash(studentName);
+        return Objects.hash(getId());
     }
 
     @Override

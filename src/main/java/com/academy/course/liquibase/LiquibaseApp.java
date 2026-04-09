@@ -20,27 +20,42 @@ public class LiquibaseApp {
     public static void main(String[] args) {
         EntityManager em = HibernateUtil.getEntityManager();
 
-  /*      Teacher teacher = new Teacher("TeacherName");
+     /*   Teacher teacher = new Teacher("TeacherName");
         Course course = new Course("CourseName");
-        Task task = new Task("taskName");
-        Student student = new Student("studentName");
+        Course course1 = new Course("CourseName1");
+        Course course2 = new Course("CourseName2");
         Answer answer = new Answer("studentAnswer",10,"feedback");
-        teacher.addCourse(course);
-        course.addTask(task);
-        task.addAnswer(answer);
-        student.addCourse(course);
-        student.addAnswer(answer);*/
+        Student student = new Student("studentName");
 
+        Task task = new Task("taskName");
+        Task task1 = new Task("taskName1");
+        Task task2 = new Task("taskName2");
+        Task task3 = new Task("taskName3");
+        Task task4 = new Task("taskName4");
+
+        teacher.addCourse(course);
+        teacher.addCourse(course1);
+        teacher.addCourse(course2);
+
+        course.addTask(task);
+        course.addTask(task1);
+        course1.addTask(task2);
+        course2.addTask(task3);
+        course2.addTask(task4);
+
+        student.addCourse(course1);
+        student.addCourse(course2);
+        student.addAnswer(answer);
+        task.addAnswer(answer);*/
 
         TeacherDAO teacherDAO = new TeacherDAOImpl(em);
         StudentDAO studentDAO = new StudentDAOImpl(em);
         AnswerDAO answerDAO = new AnswerDAOImpl(em);
-
-
-        CourseDAO courseDAO = new CourseDAOImpl(em);
-        Course course = courseDAO.get(2);
         TaskDAO taskDAO = new TaskDAOImpl(em);
-        Task task = taskDAO.get(3);
-        courseDAO.removeTask(course, task);
+
+        Student student = studentDAO.get(24);
+        Task task = taskDAO.get(27);
+
+        studentDAO.removeAnswer(student,task);
     }
 }

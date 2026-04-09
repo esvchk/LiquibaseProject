@@ -39,13 +39,15 @@ public class Course extends DataEntity implements Serializable {
 
     @Override
     public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Course course = (Course) o;
-        return Objects.equals(getId(), course.getId());
+        return Objects.equals(getId(),course.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCourseName());
+        return Objects.hash(getId());
     }
 
     @Override
